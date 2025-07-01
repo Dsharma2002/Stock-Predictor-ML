@@ -19,3 +19,6 @@ Access Your Application
 The nginx reverse proxy handles routing:
 •  Frontend at / 
 •  API at /api/*
+
+Sample picture:
+![Basic Home Screen](assets/Home_Screen_Basic.png)
