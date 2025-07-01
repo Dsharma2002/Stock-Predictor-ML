@@ -38,6 +38,42 @@ export interface ModelInfo {
   };
 }
 
+export interface StockDataRequest {
+  ticker: string;
+  period: '1d' | '1w' | '1m' | '1y';
+}
+
+export interface CandlestickData {
+  time: string;
+  open: number;
+  high: number;
+  low: number;
+  close: number;
+  volume: number;
+}
+
+export interface StockDataResponse {
+  ticker: string;
+  period: string;
+  data: CandlestickData[];
+  current_price: number;
+  price_change: number;
+  price_change_percent: number;
+}
+
+export interface NewsItem {
+  title: string;
+  url: string;
+  source: string;
+  published_at: string;
+  summary?: string;
+}
+
+export interface NewsResponse {
+  ticker: string;
+  news: NewsItem[];
+}
+
 export interface SupportedTickers {
   tickers: string[];
   note: string;

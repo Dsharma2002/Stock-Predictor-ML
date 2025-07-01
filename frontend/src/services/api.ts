@@ -5,6 +5,9 @@ import type {
   HealthResponse,
   ModelInfo,
   SupportedTickers,
+  StockDataRequest,
+  StockDataResponse,
+  NewsResponse,
 } from '../types';
 
 const API_BASE_URL = 'http://localhost/api';
@@ -59,6 +62,16 @@ export class StockPredictionAPI {
 
   static async predictStock(request: PredictionRequest): Promise<PredictionResponse> {
     const response = await apiClient.post<PredictionResponse>('/predict', request);
+    return response.data;
+  }
+
+  static async getStockData(request: StockDataRequest): Promise<StockDataResponse> {
+    const response = await apiClient.post<StockDataResponse>('/stock-data', request);
+    return response.data;
+  }
+
+  static async getStockNews(ticker: string): Promise<NewsResponse> {
+    const response = await apiClient.get<NewsResponse>(`/news/${ticker}`);
     return response.data;
   }
 }

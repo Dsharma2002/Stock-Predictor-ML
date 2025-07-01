@@ -5,6 +5,7 @@ import PredictionResult from './components/PredictionResult';
 import ModelStatus from './components/ModelStatus';
 import LoadingSpinner from './components/LoadingSpinner';
 import ErrorMessage from './components/ErrorMessage';
+import StockAnalysis from './components/StockAnalysis';
 import StockPredictionAPI from './services/api';
 import type { PredictionResponse, HealthResponse, ModelInfo } from './types';
 
@@ -113,47 +114,37 @@ function App() {
         </div>
 
         {/* Main Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Left Column - Input */}
-          <div className="lg:col-span-1">
-            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
-              <div className="flex items-center space-x-2 mb-6">
-                <TrendingUp className="w-6 h-6 text-blue-600" />
-                <h2 className="text-xl font-semibold text-gray-800">Make Prediction</h2>
-              </div>
-              
-              <TickerInput 
-                onPredict={handlePredict}
-                isLoading={isLoading}
-                supportedTickers={supportedTickers}
-              />
-
-              {isLoading && (
-                <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-                  <LoadingSpinner text="Analyzing stock data..." />
-                </div>
-              )}
+        <div className="space-y-8">
+          {/* Input Section */}
+          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+            <div className="flex items-center space-x-2 mb-6">
+              <TrendingUp className="w-6 h-6 text-blue-600" />
+              <h2 className="text-xl font-semibold text-gray-800">Make Prediction</h2>
             </div>
-          </div>
+            
+            <TickerInput 
+              onPredict={handlePredict}
+              isLoading={isLoading}
+              supportedTickers={supportedTickers}
+            />
 
-          {/* Right Column - Results */}
-          <div className="lg:col-span-2">
-            {prediction ? (
-              <PredictionResult prediction={prediction} />
-            ) : (
-              <div className="bg-white rounded-xl shadow-lg p-12 border border-gray-200 text-center">
-                <div className="mb-6">
-                  <TrendingUp className="w-16 h-16 text-gray-400 mx-auto" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-600 mb-2">
-                  Ready for Predictions
-                </h3>
-                <p className="text-gray-500">
-                  Enter a stock ticker symbol to get AI-powered price predictions based on advanced LSTM neural networks.
-                </p>
+            {isLoading && (
+              <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+                <LoadingSpinner text="Analyzing stock data..." />
               </div>
             )}
           </div>
+
+          {/* Prediction Result */}
+          {prediction && (
+            <PredictionResult prediction={prediction} />
+          )}
+
+          {/* Stock Analysis Section */}
+          <StockAnalysis 
+            ticker={prediction?.ticker || ''}
+            prediction={prediction || undefined}
+          />
         </div>
 
         {/* Footer */}
