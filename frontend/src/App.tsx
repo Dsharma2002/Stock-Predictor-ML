@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Brain, TrendingUp } from 'lucide-react';
 import TickerInput from './components/TickerInput';
 import PredictionResult from './components/PredictionResult';
@@ -6,7 +6,7 @@ import ModelStatus from './components/ModelStatus';
 import LoadingSpinner from './components/LoadingSpinner';
 import ErrorMessage from './components/ErrorMessage';
 import StockPredictionAPI from './services/api';
-import type { PredictionResponse, HealthResponse, ModelInfo, SupportedTickers } from './types';
+import type { PredictionResponse, HealthResponse, ModelInfo } from './types';
 
 function App() {
   const [prediction, setPrediction] = useState<PredictionResponse | null>(null);

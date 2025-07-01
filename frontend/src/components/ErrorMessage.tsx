@@ -12,7 +12,6 @@ interface ErrorMessageProps {
 const ErrorMessage: React.FC<ErrorMessageProps> = ({ 
   error, 
   onRetry, 
-  type = 'error',
   dismissible = false,
   onDismiss 
 }) => {

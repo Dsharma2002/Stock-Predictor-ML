@@ -5,10 +5,9 @@ import type {
   HealthResponse,
   ModelInfo,
   SupportedTickers,
-  ApiError,
 } from '../types';
 
-const API_BASE_URL = 'http://localhost:8000';
+const API_BASE_URL = 'http://localhost/api';
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
